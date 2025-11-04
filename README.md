@@ -1,2 +1,1 @@
 # AlgoritmiEStruttureDati
-# AlgoritmiEStruttureDati
