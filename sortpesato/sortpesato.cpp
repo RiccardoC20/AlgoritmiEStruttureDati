@@ -62,6 +62,8 @@ int main() {
     out << numeroScambiTOT << " " << prezzoScambi;
     out.close();
 
+    delete[] array;
+
 
     return 0;
 }

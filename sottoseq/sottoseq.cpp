@@ -28,5 +28,7 @@ int main() {
     out << max;
     out.close();
 
+    delete[] array;
+
     return 0;
 }
