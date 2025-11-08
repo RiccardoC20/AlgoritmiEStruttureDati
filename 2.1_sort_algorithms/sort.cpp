@@ -15,6 +15,15 @@ void insertionSort (int* array, int N) {
     }
 }
 
+/**
+ *    Merge Sort Algorithm 
+ *      - mergeSort
+ *      - merge
+ * 
+ *     Serve un array di appoggio per ricopiare gli elementi ordinati
+ */
+
+
 void merge(int* array, int start, int mid, int end) {
     int *array_appoggio = new int[start+end];
     int k = 0;
@@ -63,32 +72,54 @@ void mergeSort (int* array, int start, int end) {
     merge(array, start, mid, end);  // ora ordino i due blocchi già ordinati
 }
 
+/**
+ *      QuickSort Algorithm
+ *      - QuickSort
+ *      - Pivot
+ *      - Swap
+ * 
+ *      Come in MergeSort il tutto viene eseguito su un array che non viene mai spezzettato. Vengono usati
+ *      due indici start ed end per delimitare la porzione di array su cui voler eseguire le operazioni
+ */
+
+
 void swap(int *array, int a, int b) {
     int tmp = array[a];
     array[a] = array[b];
     array[b] = tmp;
 }
 
-int perno (int *array, int start, int end) {
+int pivot (int *array, int start, int end) {
+    // Il pivot è al primo posto dell'array.
     int pivot = array[start];
-    int j = start + 1;
-    int i = j;
+    // i è l'indice dell'elemento da analizzare
+    int i = start + 1;
+    // j è l'indice dei minori di pivot. N.b. all'inizio è in start perché sono stati trovati 0 elementi 
+    // minori di pivot.
+    int j = start;
     
-    while (i < end) {
-        if(array[i] < pivot) {
-            swap(array, i, j);
-            j++;
+    // scorro l'array fino ad end
+    while (i < end) {  
+        // se pivot è maggiore dell'elemento in posizione i-esima allora lo sposto
+        if(pivot > array[i]) {
+            j++;                    // prima autmento j
+            swap(array, i, j);      // poi swappo
         }
-        i++;
+        i++;                        // i avanza
     }
 
-    array[start] = array[j];
-    array[j] = pivot;
+    // posiziono pivot tra le due parti (quella superiore e quella inferiore)
+    array[start] = array[j];        // il j-esimo è un minore e lo copio in prima posizione
+    array[j] = pivot;               // copio pivot nel j-esimo posto ora
 
-    return j;
+    return j;                       // ritorno la posizione in cui è pivot
 }
 
-
+void quickSort (int *array, int start, int end) {
+    int posizione_perno = pivot(array, start, end);  // trovato la posizione di dove si trova il perno non mi resta che lanciarlo sui segmenti non ordinati
+    quickSort (array, start, posizione_perno - 1);
+    quickSort (array, posizione_perno + 1, end);
+}
 
 
 
@@ -105,7 +136,7 @@ int main() {
     in.close();
 
     // sorting algoritms
-    mergeSort(array, 0, N-1);  
+    quickSort(array, 0, N-1);  
     
     out.open("output.txt", ios::out);
     for (int i = 0; i < N; i++) {
