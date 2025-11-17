@@ -25,7 +25,8 @@ void insertionSort (int* array, int N) {
 
 
 void merge(int* array, int start, int mid, int end) {
-    int *array_appoggio = new int[start+end];
+    int length = end - start + 1;
+    int *array_appoggio = new int[length];
     int k = 0;
     int i = start;
     int j = mid +1;
@@ -51,10 +52,12 @@ void merge(int* array, int start, int mid, int end) {
     }
 
     // ricopio dall'array_appoggio all'array normale
-    int length = end - start + 1;
+    
     for (int i = 0; i < length; i++) {
         array[start + i] = array_appoggio[i];
     }
+
+    delete[] array_appoggio;
 }
 
 void mergeSort (int* array, int start, int end) { 
@@ -99,7 +102,7 @@ int pivot (int *array, int start, int end) {
     int j = start;
     
     // scorro l'array fino ad end
-    while (i < end) {  
+    while (i <= end) {  
         // se pivot è maggiore dell'elemento in posizione i-esima allora lo sposto
         if(pivot > array[i]) {
             j++;                    // prima autmento j
@@ -116,6 +119,7 @@ int pivot (int *array, int start, int end) {
 }
 
 void quickSort (int *array, int start, int end) {
+    if (start >= end) return;                        // fondamentale per il caso base
     int posizione_perno = pivot(array, start, end);  // trovato la posizione di dove si trova il perno non mi resta che lanciarlo sui segmenti non ordinati
     quickSort (array, start, posizione_perno - 1);
     quickSort (array, posizione_perno + 1, end);
@@ -136,12 +140,14 @@ int main() {
     in.close();
 
     // sorting algoritms
-    quickSort(array, 0, N-1);  
+    // quickSort(array, 0, N-1);  
+    mergeSort(array, 0, N-1);
+    
     
     out.open("output.txt", ios::out);
     for (int i = 0; i < N; i++) {
-        if (i%10 == 0) out << endl;
         out << array[i] << " ";
+        cout << array[i] << " ";
     }
     out.close();
 
