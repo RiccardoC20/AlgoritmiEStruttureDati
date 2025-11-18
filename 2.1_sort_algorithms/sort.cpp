@@ -140,8 +140,8 @@ int main() {
     in.close();
 
     // sorting algoritms
-    // quickSort(array, 0, N-1);  
-    mergeSort(array, 0, N-1);
+    quickSort(array, 0, N-1);  
+    // mergeSort(array, 0, N-1);
     
     
     out.open("output.txt", ios::out);
