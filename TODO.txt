@@ -3,4 +3,14 @@ Algoritmi da fare come es:
 sapendo 2 dei pre/in/post index di un albero ricostruire l'albero: sono 3 algoritmi diversi da implementare.
 Oppure sapendo due di questi ricostruire il terzo 
 
+N.B.: ci sono i laboratori che facciamo per casa sul sito del prof e gli esercizi in classe che facciamo 
+con l'assistente del prof
+
+è utile vedere anche come il prof ha risolto gli esercizi che io ho consegnato in modo da vedere (se ci sono)
+altri tipi di soluzioni
+
 Esercizi Extra su problemi visti a lezione..
+tipo esericizio ROMA.
+
+
+
